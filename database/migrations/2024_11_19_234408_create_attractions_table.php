@@ -12,13 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('attractions', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
+            $table->unsignedBigInteger('city_id');
+            $table->text('address')->nullable();
+            $table->string('number')->nullable();
             $table->string('image');
+            $table->string('type')->nullable();
+            $table->decimal('price', 10, 2)->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
-            $table->dateTime('deleted_at')->nullable();
+            $table->softDeletes();
+
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
         });
     }
 
