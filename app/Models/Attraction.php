@@ -21,6 +21,10 @@ class Attraction extends Model
       'city_id'
     ];
 
+    public function city(){
+        return $this->belongsTo(City::class);
+    }
+
     protected $casts = [
         'type' => ChargeTypeEnum::class,
     ];

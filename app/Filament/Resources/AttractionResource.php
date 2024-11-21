@@ -6,6 +6,7 @@ use App\Enums\ChargeTypeEnum;
 use App\Filament\Resources\AttractionResource\Pages;
 use App\Filament\Resources\AttractionResource\RelationManagers;
 use App\Models\Attraction;
+use App\Models\City;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -24,9 +25,14 @@ class AttractionResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('city_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('city_id')
+                    ->label('City')
+                    ->options(
+                        City::where('status', true)
+                        ->pluck('name', 'id')
+                    )
+                    ->searchable()
+                    ->required(),
 
                 Forms\Components\TextInput::make('name')
                     ->required()
@@ -66,8 +72,7 @@ class AttractionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('city_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('city.name')
                     ->sortable(),
 
                 Tables\Columns\TextColumn::make('name')
