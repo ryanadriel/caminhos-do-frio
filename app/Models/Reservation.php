@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Reservation extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        "user_id",
+        "package_id",
+        "total_price",
+        "reservation_date",
+        "deleted_at"
+    ];
+
+    public function package()
+    {
+        return $this->belongsTo(Package::class);
+    }
 }

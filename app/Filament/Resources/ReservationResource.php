@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ReservationResource\Pages;
 use App\Filament\Resources\ReservationResource\RelationManagers;
+use App\Models\Package;
 use App\Models\Reservation;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -26,8 +27,13 @@ class ReservationResource extends Resource
                 Forms\Components\TextInput::make('user_id')
                     ->required()
                     ->numeric(),
-                Forms\Components\TextInput::make('package_id')
-                    ->numeric(),
+                Forms\Components\Select::make('package_id')
+                    ->label('Package')
+                    ->options(
+                        Package::where('status', 1)
+                            ->pluck('name', 'id')
+                    )
+                    ->searchable(),
                 Forms\Components\TextInput::make('total_price')
                     ->numeric(),
                 Forms\Components\DateTimePicker::make('reservation_date')
@@ -42,8 +48,7 @@ class ReservationResource extends Resource
                 Tables\Columns\TextColumn::make('user_id')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('package_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('package.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('total_price')
                     ->numeric()

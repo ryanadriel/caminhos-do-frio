@@ -16,4 +16,8 @@ class Package extends Model
       "city_id",
       "status"
     ];
+
+    public function city(){
+        return $this->belongsTo(City::class);
+    }
 }

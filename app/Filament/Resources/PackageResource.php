@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\PackageResource\Pages;
 use App\Filament\Resources\PackageResource\RelationManagers;
+use App\Models\City;
 use App\Models\Package;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -34,9 +35,14 @@ class PackageResource extends Resource
                     ->required()
                     ->numeric()
                     ->prefix('$'),
-                Forms\Components\TextInput::make('city_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('city_id')
+                    ->label('City')
+                    ->options(
+                        City::where('status', true)
+                            ->pluck('name', 'id')
+                    )
+                    ->searchable()
+                    ->required(),
                 Forms\Components\Toggle::make('status')
                     ->required(),
             ]);
@@ -51,8 +57,7 @@ class PackageResource extends Resource
                 Tables\Columns\TextColumn::make('price')
                     ->money()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('city_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('city.name')
                     ->sortable(),
                 Tables\Columns\IconColumn::make('status')
                     ->boolean(),
