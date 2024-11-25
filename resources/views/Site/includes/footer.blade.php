@@ -5,10 +5,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-7 col-12 mb-4 mb-md-6 mb-lg-0 order-0"><img class="mb-4"
-                                                                                    src="{{url('images/logo2.svg')}}"
+                                                                                    src="{{url('images/logo.png')}}"
                                                                                     width="150" alt="jadoo"/>
-                <p class="fs--1 text-secondary mb-0 fw-medium">Book your trip in minute, get full Control for much
-                    longer.</p>
+                <p class="fs--1 text-secondary mb-0 fw-medium">Reserve sua viagem em minutos e tenha uma experiência que jamais será esquecida.</p>
             </div>
             <div class="col-lg-2 col-md-4 mb-4 mb-lg-0 order-lg-1 order-md-2">
                 <h4 class="footer-heading-color fw-bold font-sans-serif mb-3 mb-lg-4">Company</h4>
@@ -59,7 +58,7 @@
 
 
 <div class="py-5 text-center">
-    <p class="mb-0 text-secondary fs--1 fw-medium">All rights reserved@jadoo.co </p>
+    <p class="mb-0 text-secondary fs--1 fw-medium">&copy Todos os Direitos Reservados.</p>
 </div>
 </main>
 <!-- ===============================================-->
