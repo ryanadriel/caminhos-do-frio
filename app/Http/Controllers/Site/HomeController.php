@@ -7,7 +7,15 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+
+    protected $packages;
+
+    public function __construct(PackageController $packages){
+        $this->packages = $packages;
+    }
     public function index(){
-        return view('site.home.index');
+        $packages = $this->packages->getAll();
+
+        return view('site.home.index', compact('packages'));
     }
 }

@@ -13,6 +13,7 @@ class Package extends Model
       "name",
       "description",
       "price",
+      "image",
       "city_id",
       "status"
     ];

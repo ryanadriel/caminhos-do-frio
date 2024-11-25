@@ -15,6 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
+            $table->string('image');
             $table->decimal('price', 10, 2);
             $table->unsignedBigInteger('city_id');
             $table->boolean('status')->default(true);
