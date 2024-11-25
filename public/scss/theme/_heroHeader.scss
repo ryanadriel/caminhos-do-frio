@@ -7,11 +7,11 @@
   position: relative;
   z-index: 1;
 
-  @include media-breakpoint-up(xl){ 
+  @include media-breakpoint-up(xl){
     font-size: map-get($font-sizes, 13);
   }
 
-  @include media-breakpoint-up(xxl){ 
+  @include media-breakpoint-up(xxl){
     font-size: map-get($font-sizes, 14);
   }
 
@@ -22,20 +22,20 @@
     top: toRem(40);
     width: toRem(320);
     height: toRem(13);
-    @include media-breakpoint-up(lg){ 
+    @include media-breakpoint-up(lg){
       top: toRem(45);
     }
-    @include media-breakpoint-up(xl){ 
+    @include media-breakpoint-up(xl){
       font-size: map-get($font-sizes, 13);
       top: toRem(67);
       right: toRem(-15);
     }
-    @include media-breakpoint-up(xxl){ 
+    @include media-breakpoint-up(xxl){
       font-size: map-get($font-sizes, 14);
       top: toRem(75);
       width: toRem(370);
     }
-    background-image: url(../img/hero/shape.svg);
+    background-image: url(/images/hero/shape.svg);
     background-size: contain;
     z-index: -1;
   }

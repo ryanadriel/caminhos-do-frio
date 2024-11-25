@@ -72,6 +72,5 @@
 <script src="{{url('js/@popperjs/popper.min.js')}}"></script>
 <script src="{{url('js/bootstrap/bootstrap.min.js')}}"></script>
 <script src="{{url('js/is/is.min.js')}}"></script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
 <script src="{{url('js/fontawesome/all.min.js')}}"></script>
 <script src="{{url('js/theme.js')}}"></script>

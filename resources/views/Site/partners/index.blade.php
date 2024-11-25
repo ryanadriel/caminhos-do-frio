@@ -3,27 +3,27 @@
         <div class="row row-cols-lg-5 row-cols-md-3 row-cols-2 flex-center">
             <div class="col">
                 <div class="card shadow-hover mb-4" style="border-radius:10px;">
-                    <div class="card-body text-center"> <img class="img-fluid" src="assets/img/partner/1.png" alt="" /></div>
+                    <div class="card-body text-center"> <img class="img-fluid" src="{{url('images/partner/1.png')}}" alt="" /></div>
                 </div>
             </div>
             <div class="col">
                 <div class="card shadow-hover mb-4" style="border-radius:10px;">
-                    <div class="card-body text-center"> <img class="img-fluid" src="assets/img/partner/2.png" alt="" /></div>
+                    <div class="card-body text-center"> <img class="img-fluid" src="{{url('images/partner/2.png')}}" alt="" /></div>
                 </div>
             </div>
             <div class="col">
                 <div class="card shadow-hover mb-4" style="border-radius:10px;">
-                    <div class="card-body text-center"> <img class="img-fluid" src="assets/img/partner/3.png" alt="" /></div>
+                    <div class="card-body text-center"> <img class="img-fluid" src="{{url('images/partner/3.png')}}" alt="" /></div>
                 </div>
             </div>
             <div class="col">
                 <div class="card shadow-hover mb-4" style="border-radius:10px;">
-                    <div class="card-body text-center"> <img class="img-fluid" src="assets/img/partner/4.png" alt="" /></div>
+                    <div class="card-body text-center"> <img class="img-fluid" src="{{url('images/partner/4.png')}}" alt="" /></div>
                 </div>
             </div>
             <div class="col">
                 <div class="card shadow-hover mb-4" style="border-radius:10px;">
-                    <div class="card-body text-center"> <img class="img-fluid" src="assets/img/partner/5.png" alt="" /></div>
+                    <div class="card-body text-center"> <img class="img-fluid" src="{{url('images/partner/5.png')}}" alt="" /></div>
                 </div>
             </div>
         </div>
