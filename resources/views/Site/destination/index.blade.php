@@ -17,8 +17,13 @@
                                                                   alt="Rome, Italty"/>
                         <div class="card-body py-4 px-3">
                             <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
-                                <h4 class="text-secondary fw-medium"><a
-                                        class="link-900 text-decoration-none stretched-link" href="#!">{{$package->name}}</a>
+                                <h4 class="text-secondary fw-medium">
+                                    <a
+                                        class="link-900 text-decoration-none stretched-link"
+                                        href="{{route('package.description', $package->id)}}"
+                                    >
+                                        {{$package->name}}
+                                    </a>
                                 </h4>
                                 <!-- <span class="fs-1 fw-medium">$5,42k</span> -->
                             </div>

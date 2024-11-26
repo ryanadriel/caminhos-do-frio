@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\PackageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,5 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('package/description/{id}', [PackageController::class, 'descriptionPackage'])->name('package.description');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');

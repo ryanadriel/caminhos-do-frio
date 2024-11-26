@@ -13,7 +13,6 @@ class Attraction extends Model
       'description',
       'image',
       'status',
-      'city',
       'address',
       'number',
       'type',
