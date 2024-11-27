@@ -60,11 +60,38 @@
                                                          href="#destination">Destinos</a></li>
                     <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page"
                                                          href="#testimonial">Avaliações</a></li>
-                    <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page"
-                                                         href="{{ route('filament.admin.auth.login') }}">Login</a></li>
-                    <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium"
-                                                         href="#!">Registrar-se</a></li>
 
+                    <!-- Verifica se o usuário está logado -->
+                    @auth
+                        <li class="nav-item px-3 px-xl-4">
+                            <a href="{{ url('admin/profile') }}">
+                                <span class="nav-link fw-medium">
+                                    Olá, {{ auth()->user()->name }}!
+                                    <!-- Verifica se o usuário tem uma foto de perfil -->
+                                    @if(auth()->user()->image)
+                                        <!-- Exibe a foto do usuário -->
+                                        <img src="{{url('/storage'). '/' . auth()->user()->image }}" alt="Foto de Perfil" style="width: 30px; height: 30px; border-radius: 50%; margin-left: 10px">
+
+                                    @else
+                                        <!-- Exibe o ícone padrão se não tiver foto -->
+                                        <img src="{{ url('images/icons/person-square.svg') }}" alt="Ícone de Perfil" style="width: 30px; height: 30px;">
+                                    @endif
+                                </span>
+                            </a>
+                        </li>
+                        <li class="nav-item px-3 px-xl-4">
+                            <!-- Formulário para Logout -->
+                            <form action="{{ route('filament.admin.auth.logout') }}" method="POST" style="display: inline;">
+                                @csrf
+                                <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+                                    <img src="{{ url('images/icons/box-arrow-right.svg') }}" alt="Logout" style="width: 24px; height: 24px;">
+                                </button>
+                            </form>
+                        </li>
+                    @else
+                        <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" href="{{ route('filament.admin.auth.login') }}">Login</a></li>
+                        <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium" href="!#">Registrar-se</a></li>
+                    @endauth
                     {{--
                     <li class="nav-item dropdown px-3 px-lg-0"><a
                             class="d-inline-block ps-0 py-2 pe-3 text-decoration-none dropdown-toggle fw-medium"
