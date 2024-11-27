@@ -4,9 +4,7 @@
 
 @include('Site.service.index')
 
-@include('Site.destination.index')
-
-@include('Site.booking.index')
+@include('Site.packages.index')
 
 @include('Site.testimonial.index')
 

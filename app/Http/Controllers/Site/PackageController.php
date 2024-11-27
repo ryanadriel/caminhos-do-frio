@@ -21,6 +21,6 @@ class PackageController extends StandardController
             ->where('city_id', '=', $id)
             ->get();
 
-        return view('Site.destination.package-description.index', compact('data', 'id'));
+        return view('Site.packages.package-description.index', compact('data', 'id'));
     }
 }
