@@ -29,22 +29,12 @@ class PackageController extends StandardController
         // Lógica para buscar o pacote pelo ID
         $package = Package::findOrFail($id);
 
+        $data = $this->attraction
+            ->where('city_id', '=', $id)
+            ->get();
+
         // Retorna a view de solicitação de reserva, passando os dados do pacote
-        return view('Sistema.reservations.index', compact('package'));
+        return view('Sistema.reservations.index', compact('package', 'data'));
     }
 
-    public function createReservation(Request $request, $id)
-    {
-        $package = Package::findOrFail($id);
-
-        // Lógica para armazenar a reserva (pode ser um modelo de "Reserva" no banco)
-        Reservation::create([
-            'package_id' => $package->id,
-            'user_name' => $request->name,
-            'user_email' => $request->email,
-            'status' => 'pendente',
-        ]);
-
-        return redirect()->route('package.reserve', $package->id)->with('success', 'Solicitação de reserva enviada!');
-    }
 }

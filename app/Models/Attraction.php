@@ -24,6 +24,11 @@ class Attraction extends Model
         return $this->belongsTo(City::class);
     }
 
+    public function packages()
+    {
+        return $this->belongsToMany(Package::class, 'package__attractions');
+    }
+
     protected $casts = [
         'type' => ChargeTypeEnum::class,
     ];

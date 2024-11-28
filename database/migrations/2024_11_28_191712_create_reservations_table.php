@@ -17,11 +17,13 @@ return new class extends Migration
             $table->unsignedBigInteger('package_id')->nullable();
             $table->decimal('total_price', 8, 2)->nullable();
             $table->dateTime('reservation_date');
+            $table->string('status')->default('pending');
             $table->timestamps();
             $table->dateTime('deleted_at')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('package_id')->references('id')->on('packages')->onDelete('set null');
+
         });
     }
 

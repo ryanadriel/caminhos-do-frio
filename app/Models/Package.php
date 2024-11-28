@@ -21,4 +21,9 @@ class Package extends Model
     public function city(){
         return $this->belongsTo(City::class);
     }
+
+    public function attractions()
+    {
+        return $this->belongsToMany(Attraction::class, 'package__attractions');
+    }
 }

@@ -1,9 +1,23 @@
+
 <section style="padding-top: 7rem;">
     <div class="bg-holder" style="background-image:url('images/hero/hero-bg.svg');">
     </div>
     <!--/.bg-holder-->
 
     <div class="container">
+
+        @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <div class="row align-items-center">
             <div class="col-md-5 col-lg-6 order-0 order-md-1 text-end"><img class="pt-7 pt-md-0 hero-img"
                                                                             src="{{url('images/hero/main-image.png')}}"
