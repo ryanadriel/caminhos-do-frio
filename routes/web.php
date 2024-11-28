@@ -19,6 +19,10 @@ Route::get('/', function () {
     return redirect('/home');
 });
 
-Route::get('package/description/{id}', [PackageController::class, 'descriptionPackage'])->name('package.description');
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('package/description/{id}', [PackageController::class, 'descriptionPackage'])->name('package.description');
+Route::get('pacote/{package}/reservar', [PackageController::class, 'reserve'])->name('package.reserve');
+
+
+// routes/web.php
+Route::post('/pacote/{package}/reservar', [PackageController::class, 'createReservation'])->name('package.createReservation');

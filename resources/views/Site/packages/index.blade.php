@@ -19,7 +19,6 @@
                             <div class="d-flex flex-column flex-lg-row justify-content-between mb-3">
                                 <h4 class="text-secondary fw-medium">
                                     <a
-                                        class="link-900 text-decoration-none stretched-link"
                                         href="{{route('package.description', $package->id)}}"
                                     >
                                         {{$package->name}}
@@ -33,6 +32,13 @@
                                      alt="navigation"
                                 />
                                 <span class="fs-0 fw-medium">10 Days Trip</span>
+                            </div>
+
+                            <!-- Botão de Solicitação de Reserva -->
+                            <div class="mt-4">
+                                <a href="{{ route('package.reserve', $package->id) }}" class="btn btn-primary">
+                                    Solicitar Reserva
+                                </a>
                             </div>
                         </div>
                     </div>

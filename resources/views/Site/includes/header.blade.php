@@ -46,8 +46,8 @@
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-5 d-block"
          data-navbar-on-scroll="data-navbar-on-scroll">
         <div class="container"><a class="navbar-brand" href="{{url('/')}}"><img src="{{url('images/logo.png')}}"
-                                                                              height="60"
-                                                                              alt="logo"/></a>
+                                                                                height="60"
+                                                                                alt="logo"/></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"> </span>
@@ -57,51 +57,62 @@
                     <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page" href="#service">Serviços</a>
                     </li>
                     <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page"
-                                                         href="#destination">Destinos</a></li>
+                                                         href="{{url('/'. '#destination')}}">Destinos</a></li>
                     <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" aria-current="page"
                                                          href="#testimonial">Avaliações</a></li>
 
                     <!-- Verifica se o usuário está logado -->
                     @auth
-                        <li class="nav-item px-3 px-xl-4">
-                            <a href="{{ url('admin/profile') }}">
-                                <span class="nav-link fw-medium">
-                                    Olá, {{ auth()->user()->name }}!
-                                    <!-- Verifica se o usuário tem uma foto de perfil -->
-                                    @if(auth()->user()->image)
-                                        <!-- Exibe a foto do usuário -->
-                                        <img src="{{url('/storage'). '/' . auth()->user()->image }}" alt="Foto de Perfil" style="width: 30px; height: 30px; border-radius: 50%; margin-left: 10px">
+                        <li class="nav-item dropdown px-3 px-lg-0"><a
+                                class="d-inline-block ps-0 py-2 pe-3 text-decoration-none dropdown-toggle fw-medium"
+                                href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false"><!-- Verifica se o usuário tem uma foto de perfil -->
+                                @if(auth()->user()->image)
+                                    <!-- Exibe a foto do usuário -->
+                                    <img src="{{url('/storage'). '/' . auth()->user()->image }}" alt="Foto de Perfil"
+                                         style="width: 30px; height: 30px; border-radius: 50%; margin-left: 10px">
 
-                                    @else
-                                        <!-- Exibe o ícone padrão se não tiver foto -->
-                                        <img src="{{ url('images/icons/person-square.svg') }}" alt="Ícone de Perfil" style="width: 30px; height: 30px;">
-                                    @endif
-                                </span>
-                            </a>
+                                @else
+                                    <!-- Exibe o ícone padrão se não tiver foto -->
+                                    <img src="{{ url('images/icons/person-square.svg') }}" alt="Ícone de Perfil"
+                                         style="width: 30px; height: 30px;">
+                                @endif</a>
+                            <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" style="border-radius:0.3rem;"
+                                aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ url('admin/profile') }}">
+                                        Editar Perfil
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#!">
+                                        Minhas Reservas
+                                    </a>
+                                </li>
+                                <li class="nav-item px-3 px-xl-4">
+                                    <!-- Formulário para Logout -->
+                                    <form action="{{ route('filament.admin.auth.logout') }}" method="POST"
+                                          style="display: inline;">
+                                        @csrf
+                                        <button type="submit"
+                                                style="background: none; border: none; padding: 0; cursor: pointer;">
+                                            Logout
+                                            <img src="{{ url('images/icons/box-arrow-right.svg') }}" alt="Logout"
+                                                 style="width: 24px; height: 24px;">
+                                        </button>
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
-                        <li class="nav-item px-3 px-xl-4">
-                            <!-- Formulário para Logout -->
-                            <form action="{{ route('filament.admin.auth.logout') }}" method="POST" style="display: inline;">
-                                @csrf
-                                <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
-                                    <img src="{{ url('images/icons/box-arrow-right.svg') }}" alt="Logout" style="width: 24px; height: 24px;">
-                                </button>
-                            </form>
-                        </li>
+
                     @else
-                        <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium" href="{{ route('filament.admin.auth.login') }}">Login</a></li>
-                        <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium" href="!#">Registrar-se</a></li>
+                        <li class="nav-item px-3 px-xl-4"><a class="nav-link fw-medium"
+                                                             href="{{ route('filament.admin.auth.login') }}">Login</a>
+                        </li>
+                        <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium"
+                                                             href="!#">Registrar-se</a></li>
                     @endauth
-                    {{--
-                    <li class="nav-item dropdown px-3 px-lg-0"><a
-                            class="d-inline-block ps-0 py-2 pe-3 text-decoration-none dropdown-toggle fw-medium"
-                            href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">EN</a>
-                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow-lg" style="border-radius:0.3rem;"
-                            aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#!">EN</a></li>
-                            <li><a class="dropdown-item" href="#!">BN</a></li>
-                        </ul>
-                    </li>--}}
+
+
                 </ul>
             </div>
         </div>
