@@ -109,7 +109,7 @@
                                                              href="{{ route('filament.admin.auth.login') }}">Login</a>
                         </li>
                         <li class="nav-item px-3 px-xl-4"><a class="btn btn-outline-dark order-1 order-lg-0 fw-medium"
-                                                             href="!#">Registrar-se</a></li>
+                                                             href="{{ route('filament.admin.auth.register') }}">Registrar-se</a></li>
                     @endauth
 
 
