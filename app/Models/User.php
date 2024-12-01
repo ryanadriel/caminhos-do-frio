@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\acl\Permission;
+use App\Models\acl\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -24,6 +26,22 @@ class User extends Authenticatable
         'image',
         'status'
     ];
+
+    public function roles(){
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function hasPermission(Permission $permission){
+        return $this->hasAnyRoles($permission->roles);
+    }
+
+    public function hasAnyRoles($roles){
+        if (is_array($roles) || is_object($roles)){
+            return !!$roles->intersect($this->roles)->count();
+        }
+
+        return $this->roles()->contains('name',$roles);
+    }
 
     /**
      * The attributes that should be hidden for serialization.

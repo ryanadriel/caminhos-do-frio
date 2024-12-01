@@ -20,12 +20,13 @@ return new class extends Migration
         });
 
         Schema::create('permission_role', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->foreignId('permission_id')->constrained()->onDelete('cascade');
-            $table->foreignId('role_id')->constrained()->onDelete('cascade');
+           $table->bigIncrements('id');
 
-            $table->timestamps();
-            $table->dateTime('deleted_at')->nullable();
+           $table->foreignId('permission_id')->constrained()->cascadeOnDelete();
+           $table->foreignId('role_id')->constrained()->cascadeOnDelete();
+
+           $table->timestamps();
+           $table->dateTime('deleted_at')->nullable();
         });
     }
 
@@ -34,7 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('permission_role');
         Schema::dropIfExists('permissions');
     }
 };
