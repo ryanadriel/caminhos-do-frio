@@ -3,6 +3,7 @@
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\PackageController;
 use App\Http\Controllers\Site\ReservationController;
+use Filament\Facades\Filament;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,9 +23,11 @@ Route::get('/', function () {
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::middleware(['auth', 'role:usuário'])->group(function () {
-    Route::get('package/description/{id}', [PackageController::class, 'descriptionPackage'])->name('package.description');
-    Route::get('pacote/{package}/reservar', [PackageController::class, 'reserve'])->name('package.reserve');
+Route::get('package/description/{id}', [PackageController::class, 'descriptionPackage'])->name('package.description');
+
+
+Route::group(['middleware' => ['auth', 'role_and_filament_access']], function () {
+    Route::get('/pacote/{package}/reservar', [PackageController::class, 'reserve'])->name('package.reserve');
+    Route::post('/pacote/{package}/reservar', [ReservationController::class, 'createReservation'])->name('package.createReservation');
 });
 
-Route::post('/pacote/{package}/reservar', [ReservationController::class, 'createReservation'])->name('package.createReservation');

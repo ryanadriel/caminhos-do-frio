@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
     ];
 
     protected $routeMiddleware = [
-        'role' => \App\Http\Middleware\CheckUserRole::class,
+        'role_and_filament_access' => \App\Http\Middleware\RoleAndFilamentAccess::class,
+        'role.access' => \App\Http\Middleware\RoleAndFilamentAccess::class,
     ];
 }
