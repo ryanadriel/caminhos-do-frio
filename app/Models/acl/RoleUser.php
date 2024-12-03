@@ -2,22 +2,20 @@
 
 namespace App\Models\acl;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RoleUser extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'role_id',
         'user_id',
-        'deleted_at'
     ];
 
-    protected $table = 'role_user';
-
     public function roles(){
-        return $this->belongsToMany(Role::class, "$this->table", "id", "role_id")
-            ->whereNull("role_user.deleted_at");
+        return $this->belongsToMany(Role::class);
     }
 
     public function roleDash(){

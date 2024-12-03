@@ -2,20 +2,21 @@
 
 namespace App\Models\acl;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Role extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'name',
         'label',
-        'deleted_at'
     ];
 
     public function permissions(){
         return $this->belongsToMany(Permission::class)
             ->whereNull('permissions.deleted_at')
-            ->whereNull('role_user.deleted_at');
+            ->whereNull('permission_role.deleted_at');
     }
 }
