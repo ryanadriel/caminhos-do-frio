@@ -15,6 +15,8 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PermissionRoleResource extends Resource
 {
+    protected static ?string $navigationGroup = 'ACL';
+
     protected static ?string $model = PermissionRole::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';

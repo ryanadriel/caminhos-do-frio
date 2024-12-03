@@ -15,6 +15,9 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class RoleUserResource extends Resource
 {
+
+    protected static ?string $navigationGroup = 'ACL';
+
     protected static ?string $model = RoleUser::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
