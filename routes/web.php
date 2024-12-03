@@ -21,7 +21,10 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::get('package/description/{id}', [PackageController::class, 'descriptionPackage'])->name('package.description');
-Route::get('pacote/{package}/reservar', [PackageController::class, 'reserve'])->name('package.reserve');
+
+Route::middleware(['auth', 'role:usuário'])->group(function () {
+    Route::get('package/description/{id}', [PackageController::class, 'descriptionPackage'])->name('package.description');
+    Route::get('pacote/{package}/reservar', [PackageController::class, 'reserve'])->name('package.reserve');
+});
 
 Route::post('/pacote/{package}/reservar', [ReservationController::class, 'createReservation'])->name('package.createReservation');

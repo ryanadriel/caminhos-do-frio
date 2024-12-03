@@ -2,9 +2,9 @@
 
 namespace App\Filament\Resources\Acl;
 
-use App\Filament\Resources\Acl\PermissionResource\Pages;
-use App\Filament\Resources\Acl\PermissionResource\RelationManagers;
-use App\Models\Acl\Permission;
+use App\Filament\Resources\Acl\RoleUserResource\Pages;
+use App\Filament\Resources\Acl\RoleUserResource\RelationManagers;
+use App\Models\Acl\RoleUser;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class PermissionResource extends Resource
+class RoleUserResource extends Resource
 {
-    protected static ?string $model = Permission::class;
+    protected static ?string $model = RoleUser::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -23,12 +23,12 @@ class PermissionResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('role_id')
                     ->required()
-                    ->maxLength(50),
-                Forms\Components\TextInput::make('label')
+                    ->numeric(),
+                Forms\Components\TextInput::make('user_id')
                     ->required()
-                    ->maxLength(200),
+                    ->numeric(),
             ]);
     }
 
@@ -36,10 +36,12 @@ class PermissionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('label')
-                    ->searchable(),
+                Tables\Columns\TextColumn::make('role_id')
+                    ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('user_id')
+                    ->numeric()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -76,9 +78,9 @@ class PermissionResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPermissions::route('/'),
-            'create' => Pages\CreatePermission::route('/create'),
-            'edit' => Pages\EditPermission::route('/{record}/edit'),
+            'index' => Pages\ListRoleUsers::route('/'),
+            'create' => Pages\CreateRoleUser::route('/create'),
+            'edit' => Pages\EditRoleUser::route('/{record}/edit'),
         ];
     }
 }
