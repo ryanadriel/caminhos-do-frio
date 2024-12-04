@@ -25,17 +25,16 @@ class LatestReservation extends BaseWidget
             ->defaultSort('reservation_date', 'desc')
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
-                    ->label('Nome')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('package.name')
-                    ->label('Pacote')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('total_price')
-                    ->label('Total do Pacote')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('reservation_date')
-                    ->label('Data da Reserva')
                     ->date('d/m/y')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')

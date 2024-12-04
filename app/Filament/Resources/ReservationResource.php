@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\ChargeStatusReservationEnum;
 use App\Filament\Resources\ReservationResource\Pages;
 use App\Filament\Resources\ReservationResource\RelationManagers;
 use App\Models\Package;
@@ -32,6 +33,7 @@ class ReservationResource extends Resource
                             ->pluck('name', 'id')
                     )
                     ->searchable(),
+
                 Forms\Components\Select::make('package_id')
                     ->label('Pacote')
                     ->options(
@@ -39,9 +41,16 @@ class ReservationResource extends Resource
                             ->pluck('name', 'id')
                     )
                     ->searchable(),
+
+                Forms\Components\Select::make('status')
+                    ->options(ChargeStatusReservationEnum::class)
+                    ->searchable()
+                    ->preload(),
+
                 Forms\Components\TextInput::make('total_price')
                     ->label('Valor do Pacote')
                     ->numeric(),
+
                 Forms\Components\DateTimePicker::make('reservation_date')
                     ->label('Data da Reserva')
                     ->required(),
@@ -58,6 +67,9 @@ class ReservationResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('total_price')
                     ->numeric()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('status')
+                    ->badge()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('reservation_date')
                     ->date('d/m/y')
