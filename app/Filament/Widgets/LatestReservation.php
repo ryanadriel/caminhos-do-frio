@@ -3,6 +3,7 @@
 namespace App\Filament\Widgets;
 
 use App\Filament\Resources\ReservationResource;
+use Carbon\Carbon;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget as BaseWidget;
@@ -23,16 +24,19 @@ class LatestReservation extends BaseWidget
             ->defaultPaginationPageOption(5)
             ->defaultSort('reservation_date', 'desc')
             ->columns([
-                Tables\Columns\TextColumn::make('user_id')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('Nome')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('package.name')
+                    ->label('Pacote')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('total_price')
+                    ->label('Total do Pacote')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('reservation_date')
-                    ->dateTime()
+                    ->label('Data da Reserva')
+                    ->date('d/m/y')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

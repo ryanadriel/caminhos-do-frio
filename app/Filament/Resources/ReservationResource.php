@@ -60,7 +60,7 @@ class ReservationResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('reservation_date')
-                    ->dateTime()
+                    ->date('d/m/y')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
