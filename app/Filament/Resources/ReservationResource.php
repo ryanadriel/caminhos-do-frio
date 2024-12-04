@@ -6,6 +6,7 @@ use App\Filament\Resources\ReservationResource\Pages;
 use App\Filament\Resources\ReservationResource\RelationManagers;
 use App\Models\Package;
 use App\Models\Reservation;
+use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -24,19 +25,25 @@ class ReservationResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('user_id')
-                    ->required()
-                    ->numeric(),
+                Forms\Components\Select::make('user_id')
+                    ->label('Usuário')
+                    ->options(
+                        User::where('status', 1)
+                            ->pluck('name', 'id')
+                    )
+                    ->searchable(),
                 Forms\Components\Select::make('package_id')
-                    ->label('Package')
+                    ->label('Pacote')
                     ->options(
                         Package::where('status', 1)
                             ->pluck('name', 'id')
                     )
                     ->searchable(),
                 Forms\Components\TextInput::make('total_price')
+                    ->label('Valor do Pacote')
                     ->numeric(),
                 Forms\Components\DateTimePicker::make('reservation_date')
+                    ->label('Data da Reserva')
                     ->required(),
             ]);
     }
@@ -45,7 +52,7 @@ class ReservationResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('user_id')
+                Tables\Columns\TextColumn::make('user.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('package.name')
