@@ -36,7 +36,7 @@ class RoleAndFilamentAccess
 
         // Verifica permissões para rotas específicas
         if ($request->is('pacote/*') && !$user->roles->contains('name', 'client')) {
-            return redirect()->route('home');
+            return redirect()->route('home')->with('error', 'Apenas Clientes podem reservar!');
         }
 
         return $next($request);
